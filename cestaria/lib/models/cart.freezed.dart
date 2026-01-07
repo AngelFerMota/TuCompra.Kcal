@@ -29,6 +29,8 @@ mixin _$Cart {
   List<CartItem> get items => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
+  String? get lastModifiedBy =>
+      throw _privateConstructorUsedError; // userId del último que modificó
   String? get store => throw _privateConstructorUsedError; // p.ej. "Mercadona"
   bool get isArchived => throw _privateConstructorUsedError;
 
@@ -54,6 +56,7 @@ abstract class $CartCopyWith<$Res> {
     List<CartItem> items,
     DateTime? createdAt,
     DateTime? updatedAt,
+    String? lastModifiedBy,
     String? store,
     bool isArchived,
   });
@@ -81,6 +84,7 @@ class _$CartCopyWithImpl<$Res, $Val extends Cart>
     Object? items = null,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
+    Object? lastModifiedBy = freezed,
     Object? store = freezed,
     Object? isArchived = null,
   }) {
@@ -114,6 +118,10 @@ class _$CartCopyWithImpl<$Res, $Val extends Cart>
                 ? _value.updatedAt
                 : updatedAt // ignore: cast_nullable_to_non_nullable
                       as DateTime?,
+            lastModifiedBy: freezed == lastModifiedBy
+                ? _value.lastModifiedBy
+                : lastModifiedBy // ignore: cast_nullable_to_non_nullable
+                      as String?,
             store: freezed == store
                 ? _value.store
                 : store // ignore: cast_nullable_to_non_nullable
@@ -144,6 +152,7 @@ abstract class _$$CartImplCopyWith<$Res> implements $CartCopyWith<$Res> {
     List<CartItem> items,
     DateTime? createdAt,
     DateTime? updatedAt,
+    String? lastModifiedBy,
     String? store,
     bool isArchived,
   });
@@ -168,6 +177,7 @@ class __$$CartImplCopyWithImpl<$Res>
     Object? items = null,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
+    Object? lastModifiedBy = freezed,
     Object? store = freezed,
     Object? isArchived = null,
   }) {
@@ -201,6 +211,10 @@ class __$$CartImplCopyWithImpl<$Res>
             ? _value.updatedAt
             : updatedAt // ignore: cast_nullable_to_non_nullable
                   as DateTime?,
+        lastModifiedBy: freezed == lastModifiedBy
+            ? _value.lastModifiedBy
+            : lastModifiedBy // ignore: cast_nullable_to_non_nullable
+                  as String?,
         store: freezed == store
             ? _value.store
             : store // ignore: cast_nullable_to_non_nullable
@@ -225,6 +239,7 @@ class _$CartImpl implements _Cart {
     final List<CartItem> items = const <CartItem>[],
     this.createdAt,
     this.updatedAt,
+    this.lastModifiedBy,
     this.store,
     this.isArchived = false,
   }) : _participantIds = participantIds,
@@ -263,6 +278,9 @@ class _$CartImpl implements _Cart {
   @override
   final DateTime? updatedAt;
   @override
+  final String? lastModifiedBy;
+  // userId del último que modificó
+  @override
   final String? store;
   // p.ej. "Mercadona"
   @override
@@ -271,7 +289,7 @@ class _$CartImpl implements _Cart {
 
   @override
   String toString() {
-    return 'Cart(id: $id, name: $name, ownerId: $ownerId, participantIds: $participantIds, items: $items, createdAt: $createdAt, updatedAt: $updatedAt, store: $store, isArchived: $isArchived)';
+    return 'Cart(id: $id, name: $name, ownerId: $ownerId, participantIds: $participantIds, items: $items, createdAt: $createdAt, updatedAt: $updatedAt, lastModifiedBy: $lastModifiedBy, store: $store, isArchived: $isArchived)';
   }
 
   @override
@@ -291,6 +309,8 @@ class _$CartImpl implements _Cart {
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
                 other.updatedAt == updatedAt) &&
+            (identical(other.lastModifiedBy, lastModifiedBy) ||
+                other.lastModifiedBy == lastModifiedBy) &&
             (identical(other.store, store) || other.store == store) &&
             (identical(other.isArchived, isArchived) ||
                 other.isArchived == isArchived));
@@ -307,6 +327,7 @@ class _$CartImpl implements _Cart {
     const DeepCollectionEquality().hash(_items),
     createdAt,
     updatedAt,
+    lastModifiedBy,
     store,
     isArchived,
   );
@@ -334,6 +355,7 @@ abstract class _Cart implements Cart {
     final List<CartItem> items,
     final DateTime? createdAt,
     final DateTime? updatedAt,
+    final String? lastModifiedBy,
     final String? store,
     final bool isArchived,
   }) = _$CartImpl;
@@ -354,6 +376,8 @@ abstract class _Cart implements Cart {
   DateTime? get createdAt;
   @override
   DateTime? get updatedAt;
+  @override
+  String? get lastModifiedBy; // userId del último que modificó
   @override
   String? get store; // p.ej. "Mercadona"
   @override

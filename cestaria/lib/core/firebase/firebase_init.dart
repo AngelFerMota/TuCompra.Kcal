@@ -1,4 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
+import '../../firebase_options.dart';
 
 /// Lightweight helper to initialize Firebase safely.
 /// If platform config is missing, it catches and continues to keep the app running.
@@ -9,14 +11,17 @@ class FirebaseBootstrapper {
 
   static Future<void> ensureInitialized() async {
     if (_initialized) return;
+    
     try {
-      // If DefaultFirebaseOptions is available, you can pass options here.
-      // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-      await Firebase.initializeApp();
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
       _initialized = true;
-    } catch (_) {
+      debugPrint('✅ Firebase inicializado correctamente');
+    } catch (e) {
       // Swallow init errors so the app can run without Firebase configured.
       _initialized = false;
+      debugPrint('❌ Error al inicializar Firebase: $e');
     }
   }
 }

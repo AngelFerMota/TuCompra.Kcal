@@ -1,0 +1,71 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Reglas para usuarios
+    match /users/{userId} {
+      // Usuarios autenticados pueden leer su propio documento
+      allow read: if request.auth != null && request.auth.uid == userId;
+      
+      // Usuarios autenticados pueden crear/actualizar su propio documento
+      allow create, update: if request.auth != null && request.auth.uid == userId;
+      
+      // No se permite eliminar usuarios
+      allow delete: if false;
+    }
+    
+    // Reglas para carritos
+    match /carts/{cartId} {
+      // Función auxiliar para verificar si el usuario es participante
+      function isParticipant() {
+        return request.auth != null && (
+          resource.data.ownerId == request.auth.uid ||
+          request.auth.uid in resource.data.participantIds
+        );
+      }
+      
+      function isOwner() {
+        return request.auth != null && resource.data.ownerId == request.auth.uid;
+      }
+      
+      // Los participantes pueden leer el carrito
+      allow read: if isParticipant();
+      
+      // Solo el dueño puede crear carritos
+      allow create: if request.auth != null && 
+                       request.resource.data.ownerId == request.auth.uid;
+      
+      // Los participantes pueden actualizar el carrito
+      allow update: if isParticipant();
+      
+      // Solo el dueño puede eliminar el carrito
+      allow delete: if isOwner();
+    }
+    
+    // Reglas para productos caché
+    match /products/{productId} {
+      // Cualquier usuario autenticado puede leer productos
+      allow read: if request.auth != null;
+      
+      // Cualquier usuario autenticado puede crear/actualizar productos (caché local)
+      allow create, update: if request.auth != null;
+      
+      // No permitir eliminación de productos
+      allow delete: if false;
+    }
+    
+    // Reglas para historial de carritos
+    match /cart_history/{historyId} {
+      // Los usuarios pueden leer su propio historial
+      allow read: if request.auth != null && 
+                     resource.data.userId == request.auth.uid;
+      
+      // Los usuarios pueden crear su propio historial
+      allow create: if request.auth != null && 
+                       request.resource.data.userId == request.auth.uid;
+      
+      // No permitir actualización ni eliminación
+      allow update, delete: if false;
+    }
+  }
+}

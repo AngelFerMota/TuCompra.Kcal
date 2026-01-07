@@ -19,6 +19,7 @@ class Cart with _$Cart {
     @Default(<CartItem>[]) List<CartItem> items,
     DateTime? createdAt,
     DateTime? updatedAt,
+    String? lastModifiedBy, // userId del último que modificó
     String? store, // p.ej. "Mercadona"
     @Default(false) bool isArchived,
   }) = _Cart;

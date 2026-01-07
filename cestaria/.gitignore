@@ -18,16 +18,16 @@ migrate_working_dir/
 *.iws
 .idea/
 
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
+# VS Code
+.vscode/
 
 # Flutter/Dart/Pub related
 **/doc/api/
 **/ios/Flutter/.last_build_id
 .dart_tool/
+.flutter-plugins
 .flutter-plugins-dependencies
+.packages
 .pub-cache/
 .pub/
 /build/
@@ -43,3 +43,95 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Android
+*.apk
+*.ap_
+*.aab
+/android/.gradle/
+/android/captures/
+/android/local.properties
+/android/key.properties
+/android/app/google-services.json
+/android/.idea/
+
+# iOS
+/ios/Pods/
+/ios/.symlinks/
+/ios/Flutter/Flutter.framework
+/ios/Flutter/Flutter.podspec
+/ios/.generated/
+/ios/Flutter/App.framework
+/ios/Flutter/Generated.xcconfig
+/ios/Runner/GeneratedPluginRegistrant.*
+/ios/Runner.xcworkspace
+
+# Web
+/web/flutter_service_worker.js
+/web/version.json
+/web/.dart_tool/
+
+# Generated files
+*.g.dart
+*.freezed.dart
+*.config.dart
+*.gr.dart
+*.mocks.dart
+*.chopper.dart
+ios/Runner/GeneratedPluginRegistrant.swift
+
+# Firebase
+firebase_app_id_file.json
+.firebaserc
+firebase-debug.log*
+.firebase/
+
+# Environment & Secrets
+.env
+.env.*
+*.env
+secrets.yaml
+google-services.json
+GoogleService-Info.plist
+firebase_options.dart.backup
+
+# Node modules (para Cloud Functions)
+functions/node_modules/
+functions/.runtimeconfig.json
+functions/lib/
+
+# Backups y temporales
+*.backup
+*.bak
+*.tmp
+*.temp
+*~
+
+# Sistema operativo
+Thumbs.db
+desktop.ini
+
+# Logs
+logs/
+*.log.txt
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+firebase-debug.log*
+firebase-debug.*.log*
+
+# Documentación generada
+/doc/api/
+dartdoc_options.yaml
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+*.realm
+
+# Crashlytics
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties

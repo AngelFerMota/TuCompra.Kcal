@@ -18,6 +18,9 @@ class CartItem with _$CartItem {
     double? unitPrice,
     String? notes,
     @Default(false) bool isChecked,
+    @Default(false) bool isPurchased, // Marcado como comprado (carritos compartidos)
+    String? purchasedBy, // ID del usuario que lo compró
+    DateTime? purchasedAt, // Fecha de compra
   }) = _CartItem;
 
   factory CartItem.fromJson(Map<String, dynamic> json) => _$CartItemFromJson(json);

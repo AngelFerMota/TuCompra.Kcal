@@ -29,6 +29,8 @@ mixin _$Product {
   double? get price => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
   Map<String, dynamic>? get nutrition => throw _privateConstructorUsedError;
+  String? get nutriScore =>
+      throw _privateConstructorUsedError; // A, B, C, D, E (calidad nutricional)
   DateTime? get lastUpdated => throw _privateConstructorUsedError;
 
   /// Serializes this Product to a JSON map.
@@ -53,6 +55,7 @@ abstract class $ProductCopyWith<$Res> {
     double? price,
     String? imageUrl,
     Map<String, dynamic>? nutrition,
+    String? nutriScore,
     DateTime? lastUpdated,
   });
 }
@@ -79,6 +82,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     Object? price = freezed,
     Object? imageUrl = freezed,
     Object? nutrition = freezed,
+    Object? nutriScore = freezed,
     Object? lastUpdated = freezed,
   }) {
     return _then(
@@ -111,6 +115,10 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
                 ? _value.nutrition
                 : nutrition // ignore: cast_nullable_to_non_nullable
                       as Map<String, dynamic>?,
+            nutriScore: freezed == nutriScore
+                ? _value.nutriScore
+                : nutriScore // ignore: cast_nullable_to_non_nullable
+                      as String?,
             lastUpdated: freezed == lastUpdated
                 ? _value.lastUpdated
                 : lastUpdated // ignore: cast_nullable_to_non_nullable
@@ -137,6 +145,7 @@ abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
     double? price,
     String? imageUrl,
     Map<String, dynamic>? nutrition,
+    String? nutriScore,
     DateTime? lastUpdated,
   });
 }
@@ -162,6 +171,7 @@ class __$$ProductImplCopyWithImpl<$Res>
     Object? price = freezed,
     Object? imageUrl = freezed,
     Object? nutrition = freezed,
+    Object? nutriScore = freezed,
     Object? lastUpdated = freezed,
   }) {
     return _then(
@@ -194,6 +204,10 @@ class __$$ProductImplCopyWithImpl<$Res>
             ? _value._nutrition
             : nutrition // ignore: cast_nullable_to_non_nullable
                   as Map<String, dynamic>?,
+        nutriScore: freezed == nutriScore
+            ? _value.nutriScore
+            : nutriScore // ignore: cast_nullable_to_non_nullable
+                  as String?,
         lastUpdated: freezed == lastUpdated
             ? _value.lastUpdated
             : lastUpdated // ignore: cast_nullable_to_non_nullable
@@ -214,6 +228,7 @@ class _$ProductImpl implements _Product {
     this.price,
     this.imageUrl,
     final Map<String, dynamic>? nutrition,
+    this.nutriScore,
     this.lastUpdated,
   }) : _nutrition = nutrition;
 
@@ -245,11 +260,14 @@ class _$ProductImpl implements _Product {
   }
 
   @override
+  final String? nutriScore;
+  // A, B, C, D, E (calidad nutricional)
+  @override
   final DateTime? lastUpdated;
 
   @override
   String toString() {
-    return 'Product(id: $id, name: $name, brand: $brand, quantity: $quantity, price: $price, imageUrl: $imageUrl, nutrition: $nutrition, lastUpdated: $lastUpdated)';
+    return 'Product(id: $id, name: $name, brand: $brand, quantity: $quantity, price: $price, imageUrl: $imageUrl, nutrition: $nutrition, nutriScore: $nutriScore, lastUpdated: $lastUpdated)';
   }
 
   @override
@@ -269,6 +287,8 @@ class _$ProductImpl implements _Product {
               other._nutrition,
               _nutrition,
             ) &&
+            (identical(other.nutriScore, nutriScore) ||
+                other.nutriScore == nutriScore) &&
             (identical(other.lastUpdated, lastUpdated) ||
                 other.lastUpdated == lastUpdated));
   }
@@ -284,6 +304,7 @@ class _$ProductImpl implements _Product {
     price,
     imageUrl,
     const DeepCollectionEquality().hash(_nutrition),
+    nutriScore,
     lastUpdated,
   );
 
@@ -310,6 +331,7 @@ abstract class _Product implements Product {
     final double? price,
     final String? imageUrl,
     final Map<String, dynamic>? nutrition,
+    final String? nutriScore,
     final DateTime? lastUpdated,
   }) = _$ProductImpl;
 
@@ -329,6 +351,8 @@ abstract class _Product implements Product {
   String? get imageUrl;
   @override
   Map<String, dynamic>? get nutrition;
+  @override
+  String? get nutriScore; // A, B, C, D, E (calidad nutricional)
   @override
   DateTime? get lastUpdated;
 

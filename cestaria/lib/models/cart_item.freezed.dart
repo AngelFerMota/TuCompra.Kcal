@@ -30,6 +30,11 @@ mixin _$CartItem {
   double? get unitPrice => throw _privateConstructorUsedError;
   String? get notes => throw _privateConstructorUsedError;
   bool get isChecked => throw _privateConstructorUsedError;
+  bool get isPurchased =>
+      throw _privateConstructorUsedError; // Marcado como comprado (carritos compartidos)
+  String? get purchasedBy =>
+      throw _privateConstructorUsedError; // ID del usuario que lo compró
+  DateTime? get purchasedAt => throw _privateConstructorUsedError;
 
   /// Serializes this CartItem to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -54,6 +59,9 @@ abstract class $CartItemCopyWith<$Res> {
     double? unitPrice,
     String? notes,
     bool isChecked,
+    bool isPurchased,
+    String? purchasedBy,
+    DateTime? purchasedAt,
   });
 }
 
@@ -79,6 +87,9 @@ class _$CartItemCopyWithImpl<$Res, $Val extends CartItem>
     Object? unitPrice = freezed,
     Object? notes = freezed,
     Object? isChecked = null,
+    Object? isPurchased = null,
+    Object? purchasedBy = freezed,
+    Object? purchasedAt = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -110,6 +121,18 @@ class _$CartItemCopyWithImpl<$Res, $Val extends CartItem>
                 ? _value.isChecked
                 : isChecked // ignore: cast_nullable_to_non_nullable
                       as bool,
+            isPurchased: null == isPurchased
+                ? _value.isPurchased
+                : isPurchased // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            purchasedBy: freezed == purchasedBy
+                ? _value.purchasedBy
+                : purchasedBy // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            purchasedAt: freezed == purchasedAt
+                ? _value.purchasedAt
+                : purchasedAt // ignore: cast_nullable_to_non_nullable
+                      as DateTime?,
           )
           as $Val,
     );
@@ -133,6 +156,9 @@ abstract class _$$CartItemImplCopyWith<$Res>
     double? unitPrice,
     String? notes,
     bool isChecked,
+    bool isPurchased,
+    String? purchasedBy,
+    DateTime? purchasedAt,
   });
 }
 
@@ -157,6 +183,9 @@ class __$$CartItemImplCopyWithImpl<$Res>
     Object? unitPrice = freezed,
     Object? notes = freezed,
     Object? isChecked = null,
+    Object? isPurchased = null,
+    Object? purchasedBy = freezed,
+    Object? purchasedAt = freezed,
   }) {
     return _then(
       _$CartItemImpl(
@@ -188,6 +217,18 @@ class __$$CartItemImplCopyWithImpl<$Res>
             ? _value.isChecked
             : isChecked // ignore: cast_nullable_to_non_nullable
                   as bool,
+        isPurchased: null == isPurchased
+            ? _value.isPurchased
+            : isPurchased // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        purchasedBy: freezed == purchasedBy
+            ? _value.purchasedBy
+            : purchasedBy // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        purchasedAt: freezed == purchasedAt
+            ? _value.purchasedAt
+            : purchasedAt // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
       ),
     );
   }
@@ -204,6 +245,9 @@ class _$CartItemImpl implements _CartItem {
     this.unitPrice,
     this.notes,
     this.isChecked = false,
+    this.isPurchased = false,
+    this.purchasedBy,
+    this.purchasedAt,
   });
 
   factory _$CartItemImpl.fromJson(Map<String, dynamic> json) =>
@@ -228,10 +272,19 @@ class _$CartItemImpl implements _CartItem {
   @override
   @JsonKey()
   final bool isChecked;
+  @override
+  @JsonKey()
+  final bool isPurchased;
+  // Marcado como comprado (carritos compartidos)
+  @override
+  final String? purchasedBy;
+  // ID del usuario que lo compró
+  @override
+  final DateTime? purchasedAt;
 
   @override
   String toString() {
-    return 'CartItem(productId: $productId, name: $name, quantity: $quantity, unit: $unit, unitPrice: $unitPrice, notes: $notes, isChecked: $isChecked)';
+    return 'CartItem(productId: $productId, name: $name, quantity: $quantity, unit: $unit, unitPrice: $unitPrice, notes: $notes, isChecked: $isChecked, isPurchased: $isPurchased, purchasedBy: $purchasedBy, purchasedAt: $purchasedAt)';
   }
 
   @override
@@ -249,7 +302,13 @@ class _$CartItemImpl implements _CartItem {
                 other.unitPrice == unitPrice) &&
             (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.isChecked, isChecked) ||
-                other.isChecked == isChecked));
+                other.isChecked == isChecked) &&
+            (identical(other.isPurchased, isPurchased) ||
+                other.isPurchased == isPurchased) &&
+            (identical(other.purchasedBy, purchasedBy) ||
+                other.purchasedBy == purchasedBy) &&
+            (identical(other.purchasedAt, purchasedAt) ||
+                other.purchasedAt == purchasedAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -263,6 +322,9 @@ class _$CartItemImpl implements _CartItem {
     unitPrice,
     notes,
     isChecked,
+    isPurchased,
+    purchasedBy,
+    purchasedAt,
   );
 
   /// Create a copy of CartItem
@@ -288,6 +350,9 @@ abstract class _CartItem implements CartItem {
     final double? unitPrice,
     final String? notes,
     final bool isChecked,
+    final bool isPurchased,
+    final String? purchasedBy,
+    final DateTime? purchasedAt,
   }) = _$CartItemImpl;
 
   factory _CartItem.fromJson(Map<String, dynamic> json) =
@@ -307,6 +372,12 @@ abstract class _CartItem implements CartItem {
   String? get notes;
   @override
   bool get isChecked;
+  @override
+  bool get isPurchased; // Marcado como comprado (carritos compartidos)
+  @override
+  String? get purchasedBy; // ID del usuario que lo compró
+  @override
+  DateTime? get purchasedAt;
 
   /// Create a copy of CartItem
   /// with the given fields replaced by the non-null parameter values.

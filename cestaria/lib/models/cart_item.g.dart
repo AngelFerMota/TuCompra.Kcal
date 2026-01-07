@@ -15,6 +15,11 @@ _$CartItemImpl _$$CartItemImplFromJson(Map<String, dynamic> json) =>
       unitPrice: (json['unitPrice'] as num?)?.toDouble(),
       notes: json['notes'] as String?,
       isChecked: json['isChecked'] as bool? ?? false,
+      isPurchased: json['isPurchased'] as bool? ?? false,
+      purchasedBy: json['purchasedBy'] as String?,
+      purchasedAt: json['purchasedAt'] == null
+          ? null
+          : DateTime.parse(json['purchasedAt'] as String),
     );
 
 Map<String, dynamic> _$$CartItemImplToJson(_$CartItemImpl instance) =>
@@ -26,4 +31,7 @@ Map<String, dynamic> _$$CartItemImplToJson(_$CartItemImpl instance) =>
       'unitPrice': instance.unitPrice,
       'notes': instance.notes,
       'isChecked': instance.isChecked,
+      'isPurchased': instance.isPurchased,
+      'purchasedBy': instance.purchasedBy,
+      'purchasedAt': instance.purchasedAt?.toIso8601String(),
     };

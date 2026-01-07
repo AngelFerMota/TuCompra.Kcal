@@ -20,6 +20,7 @@ class Product with _$Product {
     double? price,
     String? imageUrl,
     Map<String, dynamic>? nutrition,
+    String? nutriScore, // A, B, C, D, E (calidad nutricional)
     DateTime? lastUpdated,
   }) = _Product;
 

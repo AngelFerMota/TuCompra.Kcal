@@ -16,7 +16,7 @@ class OpenFoodFactsApi {
   final http.Client _client;
 
   static const _base = 'https://world.openfoodfacts.org';
-  static const _searchFields = 'code,product_name,brands,quantity,image_url,nutriments';
+  static const _searchFields = 'code,product_name,brands,quantity,image_url,nutriments,nutriscore_grade';
 
   Future<List<Product>> search(String query) async {
     if (query.trim().isEmpty) return <Product>[];
@@ -65,6 +65,10 @@ class OpenFoodFactsApi {
     final id = (p['code'] as String?)?.trim();
     final name = (p['product_name'] as String?)?.trim();
     if (id == null || id.isEmpty || name == null || name.isEmpty) return null;
+    
+    // Obtener NutriScore (a, b, c, d, e) y convertir a mayúscula
+    final nutriScore = (p['nutriscore_grade'] as String?)?.trim().toUpperCase();
+    
     return Product(
       id: id,
       name: name,
@@ -72,6 +76,7 @@ class OpenFoodFactsApi {
       quantity: (p['quantity'] as String?)?.trim(),
       imageUrl: (p['image_url'] as String?)?.trim(),
       nutrition: (p['nutriments'] is Map<String, dynamic>) ? p['nutriments'] as Map<String, dynamic> : null,
+      nutriScore: nutriScore,
       lastUpdated: null,
     );
   }

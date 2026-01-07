@@ -26,6 +26,7 @@ _$CartImpl _$$CartImplFromJson(Map<String, dynamic> json) => _$CartImpl(
   updatedAt: json['updatedAt'] == null
       ? null
       : DateTime.parse(json['updatedAt'] as String),
+  lastModifiedBy: json['lastModifiedBy'] as String?,
   store: json['store'] as String?,
   isArchived: json['isArchived'] as bool? ?? false,
 );
@@ -39,6 +40,7 @@ Map<String, dynamic> _$$CartImplToJson(_$CartImpl instance) =>
       'items': instance.items,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
+      'lastModifiedBy': instance.lastModifiedBy,
       'store': instance.store,
       'isArchived': instance.isArchived,
     };
