@@ -1,4 +1,4 @@
-# 🛒 Cestana  
+# 🛒 Cestaria
 ### *Tu compra, más sana. Más conectada.*
 
 ---
