@@ -349,6 +349,63 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                         ),
                       ],
                     ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.restaurant,
+                              color: Theme.of(context).colorScheme.onSecondaryContainer,
+                              size: 20,
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              'Información Nutricional Total',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context).colorScheme.onSecondaryContainer,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 12),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            _buildNutrientColumn(
+                              context,
+                              'Calorías',
+                              '${totalCalories.toStringAsFixed(0)} kcal',
+                              Icons.local_fire_department,
+                              Colors.orange,
+                            ),
+                            _buildNutrientColumn(
+                              context,
+                              'Proteínas',
+                              '${totalProteins.toStringAsFixed(1)} g',
+                              Icons.fitness_center,
+                              Colors.red,
+                            ),
+                            _buildNutrientColumn(
+                              context,
+                              'Carbohidratos',
+                              '${totalCarbs.toStringAsFixed(1)} g',
+                              Icons.grain,
+                              Colors.amber,
+                            ),
+                            _buildNutrientColumn(
+                              context,
+                              'Grasas',
+                              '${totalFats.toStringAsFixed(1)} g',
+                              Icons.opacity,
+                              Colors.yellow[700]!,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 // Price Total
                 Container(
@@ -383,6 +440,36 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                 ),
               ],
             ),
+    );
+  }
+
+  Widget _buildNutrientColumn(
+    BuildContext context,
+    String label,
+    String value,
+    IconData icon,
+    Color color,
+  ) {
+    return Column(
+      children: [
+        Icon(icon, color: color, size: 24),
+        const SizedBox(height: 4),
+        Text(
+          value,
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: Theme.of(context).colorScheme.onSecondaryContainer,
+          ),
+        ),
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: 12,
+            color: Theme.of(context).colorScheme.onSecondaryContainer.withOpacity(0.7),
+          ),
+        ),
+      ],
     );
   }
 }

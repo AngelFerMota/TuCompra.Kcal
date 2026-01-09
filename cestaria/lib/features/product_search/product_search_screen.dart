@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'product_search_provider.dart';
 import 'product_cache_provider.dart';
 import 'barcode_scanner_screen.dart';
 import 'package:cestaria/models/product.dart';
 import 'package:cestaria/models/cart_item.dart';
 import 'package:cestaria/features/cart/cart_provider.dart';
-import 'package:cestaria/features/shared_cart/shared_cart_provider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:cestaria/core/widgets/nutriscore_badge.dart';
 import 'package:cestaria/features/product_detail/product_detail_screen.dart';
@@ -152,11 +150,7 @@ class _ResultsList extends StatelessWidget {
         return ListTile(
           onTap: () {
             // Navegar a la pantalla de detalle del producto
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => ProductDetailScreen(product: p),
-              ),
-            );
+            context.push('/product/${p.id}', extra: p);
           },
           leading: p.imageUrl != null
               ? ClipRRect(
@@ -215,38 +209,10 @@ class _ResultsList extends StatelessWidget {
               ),
             ],
           ),
-          trailing: PopupMenuButton<String>(
+          trailing: IconButton(
             icon: const Icon(Icons.add_shopping_cart),
             tooltip: 'Añadir al carrito',
-            onSelected: (value) {
-              if (value == 'local') {
-                _addToCart(context, p, isShared: false);
-              } else if (value == 'shared') {
-                _addToCart(context, p, isShared: true);
-              }
-            },
-            itemBuilder: (context) => [
-              const PopupMenuItem(
-                value: 'local',
-                child: Row(
-                  children: [
-                    Icon(Icons.shopping_cart, size: 20),
-                    SizedBox(width: 8),
-                    Text('Mi carrito'),
-                  ],
-                ),
-              ),
-              const PopupMenuItem(
-                value: 'shared',
-                child: Row(
-                  children: [
-                    Icon(Icons.people, size: 20),
-                    SizedBox(width: 8),
-                    Text('Carrito compartido'),
-                  ],
-                ),
-              ),
-            ],
+            onPressed: () => _addToCart(context, p, isShared: false),
           ),
         );
       },
@@ -267,16 +233,11 @@ class _ResultsList extends StatelessWidget {
       isChecked: false,
     );
 
-    // Añadir al carrito correspondiente
-    if (isShared) {
-      final userId = FirebaseAuth.instance.currentUser?.uid ?? 'anonymous';
-      ref.read(sharedCartProvider.notifier).addItem(cartItem, userId);
-    } else {
-      ref.read(cartProvider.notifier).addItem(cartItem);
-    }
+    // Añadir al carrito local
+    ref.read(cartProvider.notifier).addItem(cartItem);
 
     // Mostrar popup animado con confirmación
-    _showAddedToCartPopup(context, product, cartItem, isShared);
+    _showAddedToCartPopup(context, product, cartItem, false);
   }
 
   void _showAddedToCartPopup(BuildContext context, Product product, CartItem cartItem, bool isShared) {
@@ -309,9 +270,9 @@ class _ResultsList extends StatelessWidget {
                 const SizedBox(height: 16),
                 
                 // Título
-                Text(
-                  isShared ? '¡Añadido al carrito compartido!' : '¡Añadido al carrito!',
-                  style: const TextStyle(
+                const Text(
+                  '¡Añadido al carrito!',
+                  style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),

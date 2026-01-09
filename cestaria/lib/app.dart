@@ -11,6 +11,7 @@ class App extends ConsumerWidget {
 		
 		return MaterialApp.router(
 			title: 'Cestaria',
+			debugShowCheckedModeBanner: false,
 			theme: ThemeData(
 				colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
 				useMaterial3: true,

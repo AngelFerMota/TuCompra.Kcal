@@ -93,6 +93,7 @@ firebase-debug.log*
 secrets.yaml
 google-services.json
 GoogleService-Info.plist
+firebase_options.dart
 firebase_options.dart.backup
 
 # Node modules (para Cloud Functions)
