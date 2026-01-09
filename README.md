@@ -223,10 +223,7 @@ Este proyecto me permitió profundizar en:
 
 ## 📝 Licencia
 
-Este es un proyecto académico (TFG - Ingeniería Informática).
+Este es un proyecto académico
 
 ---
 
-*Desarrollado con ❤️ usando Flutter y Dart*
-
-**Proyecto TFG - Ingeniería Informática 2025**
