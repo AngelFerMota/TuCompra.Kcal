@@ -154,6 +154,7 @@ lib/
 - Emulador Android o dispositivo físico
 
 ### Pasos de instalación
+
 > **💡 Recomendación para prueba rápida:**  
 > La aplicación viene precargada con productos de ejemplo (Nutella, Coca-Cola, Leche, Pan integral) que muestran el potencial completo de la app.  
 > 
@@ -180,11 +181,26 @@ flutter pub run build_runner build --delete-conflicting-outputs
 ```
 
 4️⃣ **Ejecuta la aplicación**
+
+**Opción A: Doble clic (Windows)**
+```
+run_app.bat          (Batch script, funciona siempre, para apk sin una buena configuración puede dar conflictos)
+run_app.ps1          (PowerShell script)
+```
+
+**Opción B: Línea de comandos**
 ```bash
 flutter run
 ```
 
 ### Compilar APK de producción
+
+**Opción A: Script automatizado**
+```
+build_apk.bat        (Ejecuta limpieza, build_runner y compilación)
+```
+
+**Opción B: Línea de comandos**
 
 ```bash
 flutter build apk --release
@@ -234,4 +250,3 @@ Este proyecto me permitió profundizar en:
 Este es un proyecto académico
 
 ---
-
