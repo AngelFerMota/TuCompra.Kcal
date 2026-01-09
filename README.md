@@ -153,8 +153,15 @@ lib/
 - **Android Studio** con Android SDK
 - Emulador Android o dispositivo físico
 
-### Pasos de instalación (Recomendada para su prueba más rápida y sencilla A la hora de buscar productor Nutella y CocaCola tienen todo lo que se neceita para ver la aplicación a pleno potencial, tambien recomiendo probar la busqueda de varios productos)
-
+### Pasos de instalación
+> **💡 Recomendación para prueba rápida:**  
+> La aplicación viene precargada con productos de ejemplo (Nutella, Coca-Cola, Leche, Pan integral) que muestran el potencial completo de la app.  
+> 
+> **Productos ideales para búsqueda:**
+> - **Nutella** - Excelente información nutricional completa
+> - **Coca-Cola** - Muestra Nutri-Score E y valores de azúcar
+> - **Leche** - Producto básico con buen balance nutricional
+> - Cualquier producto de Mercadona también funciona bien
 1️⃣ **Clona el repositorio**
 ```bash
 git clone https://github.com/tu-usuario/cestaria.git
