@@ -162,6 +162,7 @@ lib/
 > - **Coca-Cola** - Muestra Nutri-Score E y valores de azúcar
 > - **Leche** - Producto básico con buen balance nutricional
 > - Cualquier producto de Mercadona también funciona bien
+
 1️⃣ **Clona el repositorio**
 ```bash
 git clone https://github.com/tu-usuario/cestaria.git
